@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Для Карины 🌸</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:'Segoe UI', sans-serif;
+    background:linear-gradient(135deg,#ff9a9e,#fecfef,#fad0c4);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+    overflow:hidden;
+}
+
+/* страницы */
+
+.page{
+    display:none;
+    max-width:700px;
+    padding:20px;
+    z-index:2;
+}
+
+.page.active{
+    display:block;
+}
+
+h1{
+    font-size:34px;
+    line-height:1.4;
+}
+
+/* кнопка */
+
+button{
+    margin-top:30px;
+    padding:14px 35px;
+    font-size:18px;
+    border:none;
+    border-radius:12px;
+    background:white;
+    color:#e75480;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.08);
+}
+
+/* тюльпаны */
+
+.tulip{
+    position:absolute;
+    bottom:-100px;
+    font-size:40px;
+    opacity:0.35;
+    animation: floatUp linear infinite;
+}
+
+.t1{left:10%; animation-duration:14s;}
+.t2{left:30%; animation-duration:18s;}
+.t3{left:50%; animation-duration:16s;}
+.t4{left:70%; animation-duration:20s;}
+.t5{left:85%; animation-duration:15s;}
+
+@keyframes floatUp{
+    from{
+        transform:translateY(0) rotate(0deg);
+    }
+    to{
+        transform:translateY(-120vh) rotate(360deg);
+    }
+}
+
+/* лепестки сакуры */
+
+.petal{
+    position:absolute;
+    top:-10px;
+    font-size:18px;
+    opacity:0.8;
+    animation: fall linear infinite;
+}
+
+@keyframes fall{
+    from{
+        transform:translateY(-10vh) translateX(0) rotate(0deg);
+    }
+    to{
+        transform:translateY(110vh) translateX(100px) rotate(360deg);
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- Тюльпаны -->
+<div class="tulip t1">🌷</div>
+<div class="tulip t2">🌷</div>
+<div class="tulip t3">🌷</div>
+<div class="tulip t4">🌷</div>
+<div class="tulip t5">🌷</div>
+
+<!-- Страницы -->
+
+<div id="page1" class="page active">
+<h1>Карина, с 8 марта 🌷<br><br>
+Пусть этот день будет дарит тебе исключительно положительные эмоции.</h1>
+
+<button onclick="nextPage(2)">Нажми дальше ✨</button>
+</div>
+
+<div id="page2" class="page">
+<h1>
+Очень надеюсь, что сегодня у тебя отличное настроение 😊<br><br>
+И что этот небольшой сюрприз сможет сделать день чуть приятнее.
+</h1>
+
+<button onclick="nextPage(3)">Еще немного 👉</button>
+</div>
+
+<div id="page3" class="page">
+<h1>
+Если ты читаешь это, значит всё-таки получила букет 🌷<br><br>
+
+Надеюсь смог вызвать у тебя улыбку.<br><br>
+
+Улыбайся почаще — у тебя очень тёплая и красивая улыбка.<br><br>
+
+С праздником тебя ✨
+</h1>
+</div>
+
+<script>
+
+/* переключение страниц */
+
+function nextPage(page){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    document.getElementById('page'+page).classList.add('active');
+}
+
+/* генерация лепестков */
+
+function createPetal(){
+    const petal=document.createElement("div");
+    petal.classList.add("petal");
+    petal.innerHTML="🌸";
+
+    petal.style.left=Math.random()*100+"vw";
+    petal.style.animationDuration=(5+Math.random()*7)+"s";
+    petal.style.fontSize=(12+Math.random()*10)+"px";
+
+    document.body.appendChild(petal);
+
+    setTimeout(()=>{
+        petal.remove();
+    },12000);
+}
+
+setInterval(createPetal,300);
+
+</script>
+
+</body>
+</html>
